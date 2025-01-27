@@ -1,0 +1,2083 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0B0B0B;
+    overflow-y: scroll; /* Всегда показываем скроллбар чтобы избежать дёрганий */
+    scrollbar-width: thin; /* Для Firefox */
+    scrollbar-color: rgba(0, 242, 255, 0.2) rgba(0, 0, 0, 0.1); /* Для Firefox */
+}
+
+/* Стилизуем скроллбар для Chrome/Safari/Edge */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 242, 255, 0.2);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 242, 255, 0.4);
+}
+
+/* Общий контейнер для выравнивания */
+.container {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 120px;
+    box-sizing: border-box; /* Гарантируем, что padding включен в ширину */
+    position: relative;
+}
+
+/* Header styles */
+.main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0; /* Убираем горизонтальные padding */
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo {
+    height: 35px;
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Rexlia', sans-serif;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-right: -15px;
+    transform: translateX(-55px); /* Увеличиваем смещение влево для навигации еще на 10px */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #00f2ff;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #00f2ff;
+}
+
+nav a.active {
+    color: #00f2ff;
+}
+
+nav a.active::after {
+    width: 100%;
+}
+
+/* Main content */
+main {
+    padding-top: 100px;
+    color: #fff;
+}
+
+/* Canvas background */
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0B0B0B;
+}
+
+/* Home page styles */
+.home-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px; /* Добавляем отступ между текстом и логотипом */
+}
+
+.text-content {
+    flex: 0 1 auto; /* Изменяем flex-grow на 0 */
+    max-width: 800px;
+}
+
+.welcome-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 29px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.program-title {
+    font-family: 'Rexlia', sans-serif;
+    font-weight: 700;
+    font-size: 65px;
+    line-height: 71px;
+    color: rgb(6, 239, 255);
+}
+
+.program-title span {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.program-title span:nth-child(1) {
+    animation-delay: 0.8s;
+}
+
+.program-title span:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.program-title span:nth-child(3) {
+    animation-delay: 1.2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-animation {
+    flex: 0 1 50%;
+    height: 600px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: -15px;
+    transform: translateX(45px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.logo-animation canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: translateX(20px); /* Немного увеличиваем смещение канваса */
+}
+
+/* Добавим новую анимацию для плавного появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1600px) {
+    .container {
+        padding: 0 80px;
+    }
+
+    .program-title {
+        font-size: 60px;
+        line-height: 66px;
+    }
+
+    .logo-animation {
+        height: 550px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 60px;
+    }
+
+    .program-title {
+        font-size: 55px;
+        line-height: 61px;
+    }
+
+    nav ul {
+        gap: 30px;
+        transform: translateX(-35px);
+    }
+
+    .logo-animation {
+        height: 500px;
+        transform: translateX(35px);
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .home-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .text-content {
+        max-width: 100%;
+    }
+
+    .welcome-text {
+        font-size: 26px;
+    }
+
+    .program-title {
+        font-size: 50px;
+        line-height: 56px;
+    }
+
+    .logo-animation {
+        height: 450px;
+        transform: translateX(0);
+        margin-right: 0;
+    }
+
+    nav ul {
+        gap: 20px;
+        transform: translateX(-25px);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .logo-link {
+        margin-bottom: 15px;
+    }
+
+    nav ul {
+        transform: translateX(0);
+        margin-right: 0;
+        gap: 15px;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+    }
+
+    .program-title {
+        font-size: 45px;
+        line-height: 51px;
+    }
+
+    .logo-animation {
+        height: 400px;
+    }
+
+    .logo-animation canvas {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 576px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .program-title {
+        font-size: 40px;
+        line-height: 46px;
+    }
+
+    .logo-animation {
+        height: 350px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+}
+
+/* Добавим поддержку очень маленьких экранов */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .welcome-text {
+        font-size: 22px;
+    }
+
+    .program-title {
+        font-size: 35px;
+        line-height: 41px;
+    }
+
+    .logo-animation {
+        height: 300px;
+    }
+}
+
+/* Footer styles */
+.main-footer {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(0, 242, 255, 0.3);
+    padding: 40px 0;
+    margin-top: 120px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.footer-brand {
+    flex: 0 0 300px;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.footer-logo img {
+    height: 35px;
+    width: auto;
+}
+
+.footer-logo span {
+    font-family: 'Rexlia', sans-serif;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.footer-logo span::before {
+    content: 'SOLUS';
+    display: block;
+}
+
+.footer-logo span::after {
+    content: 'AMBASSADORS';
+    display: block;
+}
+
+.footer-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 100px;
+}
+
+.links-group {
+    min-width: 200px;
+}
+
+.links-group h3 {
+    font-family: 'Rexlia', sans-serif;
+    color: #00f2ff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.links-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.links-group li {
+    margin-bottom: 12px;
+}
+
+.links-group a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    opacity: 0.8;
+}
+
+.links-group a:hover {
+    color: #00f2ff;
+    opacity: 1;
+}
+
+/* Responsive Footer */
+@media (max-width: 992px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-brand {
+        flex: 0 0 auto;
+    }
+
+    .footer-logo {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 30px 0;
+        margin-top: 60px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .links-group h3 {
+        text-align: center;
+    }
+
+    .links-group ul {
+        text-align: center;
+    }
+}
+
+/* Font Face declarations */
+@font-face {
+    font-family: 'YourFont';
+    src: url('../fonts/your-font/your-font-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'YourFont';
+    src: url('../fonts/your-font/your-font-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rexlia';
+    src: url('../fonts/rexlia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 100px 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    margin-top: 80px;
+}
+
+.benefits-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 42px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 1.4s;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.benefit-card {
+    background: rgba(11, 11, 11, 0.6);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.benefit-card:nth-child(1) { animation-delay: 1.6s; }
+.benefit-card:nth-child(2) { animation-delay: 1.8s; }
+.benefit-card:nth-child(3) { animation-delay: 2.0s; }
+.benefit-card:nth-child(4) { animation-delay: 2.2s; }
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 242, 255, 0.05);
+    border-radius: 50%;
+}
+
+.benefit-icon svg {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 8px rgba(0, 242, 255, 0.5));
+}
+
+.benefit-card h3 {
+    color: #00f2ff;
+    font-family: 'Rexlia', sans-serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .benefits-title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits-section {
+        padding: 80px 0;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .benefits-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .benefit-card {
+        padding: 30px 20px;
+    }
+}
+
+/* Paths Section */
+.paths-section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.paths-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+    padding-right: 120px;
+}
+
+.paths-text {
+    flex: 1;
+    max-width: 600px;
+    margin-left: 0; /* Убираем отступ слева */
+    padding-left: 0; /* Убираем внутренний отступ */
+}
+
+.paths-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #00f2ff;
+    margin-bottom: 40px;
+}
+
+.paths-title span {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.paths-title span:nth-child(1) { animation-delay: 0.3s; }
+.paths-title span:nth-child(2) { animation-delay: 0.5s; }
+.paths-title span:nth-child(3) { animation-delay: 0.7s; }
+
+.paths-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.9s;
+    max-width: 520px;
+}
+
+.paths-cta {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 1.1s;
+}
+
+.paths-cards {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    max-width: 700px;
+    margin-left: -80px;
+}
+
+.path-card {
+    flex: 1;
+    background: rgba(11, 11, 11, 0.4); /* Делаем фон более прозрачным */
+    backdrop-filter: blur(10px); /* Добавляем эффект стекла */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Делаем границу белой */
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.path-card:nth-child(1) { animation-delay: 1.3s; }
+.path-card:nth-child(2) { animation-delay: 1.5s; }
+
+.path-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0, 242, 255, 0.1),
+        inset 0 0 20px rgba(0, 242, 255, 0.05); /* Добавляем внутреннее свечение */
+}
+
+.card-image {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.path-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.path-card h3 {
+    color: #fff;
+    font-family: 'Rexlia', sans-serif;
+    font-size: 22px;
+    text-align: center;
+    padding: 25px;
+    transition: color 0.3s ease;
+}
+
+.path-card:hover h3 {
+    color: #00f2ff;
+}
+
+/* Добавляем дополнительный эффект свечения вокруг карточки */
+.path-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+}
+
+.path-card:hover::before {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .paths-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+        padding-right: 0;
+    }
+
+    .paths-cards {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .paths-title {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .paths-section {
+        padding: 80px 0;
+    }
+
+    .paths-title {
+        font-size: 36px;
+    }
+
+    .paths-cards {
+        flex-direction: column;
+    }
+
+    .card-image {
+        height: 280px;
+    }
+}
+
+.home-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-footer {
+    margin-top: auto; /* Это прижмет футер к низу, если контента мало */
+    /* ... остальные стили футера ... */
+}
+
+/* Content Creation Page */
+.content-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+    padding: 120px 0;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 65px;
+    line-height: 1.2;
+    color: #00f2ff;
+    margin-bottom: 30px;
+}
+
+.hero-title span {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero-title span:nth-child(1) { animation-delay: 0.3s; }
+.hero-title span:nth-child(2) { animation-delay: 0.5s; }
+.hero-title span:nth-child(3) { animation-delay: 0.7s; }
+
+.hero-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    opacity: 0.8;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 1.1s;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 500px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInRight 0.8s ease forwards;
+    animation-delay: 0.5s;
+    perspective: 1000px;
+}
+
+.hero-image img {
+    width: 90%;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0.8);
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    animation: 
+        float 6s ease-in-out infinite,
+        glow 4s ease-in-out infinite;
+}
+
+.hero-image:hover img {
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(0, 242, 255, 0.4));
+    transform: translateZ(20px);
+}
+
+/* Анимация плавающего эффекта */
+@keyframes float {
+    0% {
+        transform: 
+            translateZ(0) 
+            rotateY(0deg) 
+            rotateX(0deg);
+    }
+    25% {
+        transform: 
+            translateZ(15px) 
+            rotateY(2deg) 
+            rotateX(-2deg);
+    }
+    50% {
+        transform: 
+            translateZ(30px) 
+            rotateY(-2deg) 
+            rotateX(2deg);
+    }
+    75% {
+        transform: 
+            translateZ(15px) 
+            rotateY(2deg) 
+            rotateX(-2deg);
+    }
+    100% {
+        transform: 
+            translateZ(0) 
+            rotateY(0deg) 
+            rotateX(0deg);
+    }
+}
+
+/* Добавляем плавное свечение */
+@keyframes glow {
+    0% {
+        filter: brightness(0.8) drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
+    }
+    50% {
+        filter: brightness(0.9) drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
+    }
+    100% {
+        filter: brightness(0.8) drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
+    }
+}
+
+.hero-image img {
+    animation: 
+        float 6s ease-in-out infinite,
+        glow 4s ease-in-out infinite;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content-hero {
+        padding: 100px 0;
+    }
+
+    .hero-title {
+        font-size: 55px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 0;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .hero-image {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+}
+
+/* Rewards Section */
+.rewards-section {
+    padding: 120px 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.rewards-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.reward-card {
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.reward-card:nth-child(1) { animation-delay: 0.4s; }
+.reward-card:nth-child(2) { animation-delay: 0.5s; }
+.reward-card:nth-child(3) { animation-delay: 0.6s; }
+.reward-card:nth-child(4) { animation-delay: 0.7s; }
+
+.reward-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0, 242, 255, 0.1),
+        inset 0 0 20px rgba(0, 242, 255, 0.05);
+}
+
+.reward-icon {
+    font-size: 36px;
+    color: #00f2ff;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.5));
+}
+
+.reward-card h3 {
+    color: #fff;
+    font-family: 'Rexlia', sans-serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.reward-card:hover h3 {
+    color: #00f2ff;
+}
+
+.reward-card p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 800px;
+    }
+    
+    .rewards-title {
+        font-size: 42px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rewards-section {
+        padding: 80px 0;
+    }
+    
+    .rewards-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .rewards-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+    
+    .reward-card {
+        padding: 30px 20px;
+    }
+}
+
+/* Roles Section */
+.roles-section {
+    padding: 120px 0;
+}
+
+.roles-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.roles-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.role-card {
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+/* Эффект свечения при наведении */
+.role-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 242, 255, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 
+        0 10px 40px rgba(0, 242, 255, 0.1),
+        inset 0 0 30px rgba(0, 242, 255, 0.05);
+}
+
+.role-card:hover::before {
+    opacity: 1;
+}
+
+/* Анимация для изображения */
+.role-image img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    filter: brightness(0.8) drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    animation: 
+        floatRole 8s ease-in-out infinite,
+        glowRole 4s ease-in-out infinite;
+}
+
+.role-card:hover .role-image img {
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(0, 242, 255, 0.4));
+    transform: scale(1.05) translateZ(30px);
+}
+
+@keyframes floatRole {
+    0%, 100% {
+        transform: 
+            translateY(0) 
+            rotateY(0deg) 
+            rotateX(0deg);
+    }
+    25% {
+        transform: 
+            translateY(-10px) 
+            rotateY(3deg) 
+            rotateX(-2deg);
+    }
+    50% {
+        transform: 
+            translateY(0) 
+            rotateY(-3deg) 
+            rotateX(2deg);
+    }
+    75% {
+        transform: 
+            translateY(10px) 
+            rotateY(3deg) 
+            rotateX(-2deg);
+    }
+}
+
+@keyframes glowRole {
+    0%, 100% {
+        filter: brightness(0.8) drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
+    }
+    50% {
+        filter: brightness(1) drop-shadow(0 0 20px rgba(0, 242, 255, 0.3));
+    }
+}
+
+/* Добавляем эффект при наведении на текстовые элементы */
+.role-name, .role-level {
+    transition: all 0.3s ease;
+}
+
+.role-card:hover .role-name {
+    color: #00f2ff;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+}
+
+.role-card:hover .role-level {
+    background: rgba(0, 242, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+.role-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    gap: 40px;
+}
+
+.role-info {
+    flex: 1;
+}
+
+.role-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.role-level {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 242, 255, 0.1);
+    color: #00f2ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-right: 15px;
+    height: 32px;
+}
+
+.role-name {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 32px;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+.role-description {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.role-details {
+    display: flex;
+    gap: 40px;
+}
+
+.details-group h4 {
+    color: #00f2ff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.details-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.details-group li {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.details-group li::before {
+    content: '✦';
+    color: #00f2ff;
+    font-size: 14px;
+}
+
+.details-group a {
+    color: #00f2ff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.details-group a:hover {
+    opacity: 0.8;
+}
+
+.role-image {
+    flex: 0 0 250px;
+    height: 250px;
+    position: relative;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Добавляем задержку для второй карточки */
+.role-card:nth-child(2) {
+    animation-delay: 0.6s; /* Увеличиваем задержку для второй карточки */
+}
+
+.role-card:nth-child(2) .role-image img {
+    animation-delay: 0.2s; /* Небольшая задержка для анимации изображения */
+}
+
+/* Добавляем задержку для третьей карточки */
+.role-card:nth-child(3) {
+    animation-delay: 0.8s; /* Увеличиваем задержку для третьей карточки */
+}
+
+.role-card:nth-child(3) .role-image img {
+    animation-delay: 0.4s; /* Небольшая задержка для анимации изображения */
+}
+
+/* Добавляем задержку для четвертой карточки */
+.role-card:nth-child(4) {
+    animation-delay: 1s; /* Увеличиваем задержку для четвертой карточки */
+}
+
+.role-card:nth-child(4) .role-image img {
+    animation-delay: 0.6s; /* Небольшая задержка для анимации изображения */
+}
+
+/* Добавляем задержку для пятой карточки */
+.role-card:nth-child(5) {
+    animation-delay: 1.2s; /* Увеличиваем задержку для пятой карточки */
+}
+
+.role-card:nth-child(5) .role-image img {
+    animation-delay: 0.8s; /* Небольшая задержка для анимации изображения */
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .role-image {
+        flex: 0 0 230px;
+        height: 230px;
+    }
+}
+
+@media (max-width: 992px) {
+    .role-image {
+        flex: 0 0 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .roles-section {
+        padding: 80px 0;
+    }
+
+    .roles-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .role-details {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .role-content {
+        padding: 20px;
+    }
+}
+
+/* Tasks Section */
+.tasks-section {
+    padding: 120px 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.tasks-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.tasks-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+.tasks-description {
+    flex: none;
+    max-width: 800px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #00f2ff;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+    text-align: center;
+}
+
+.points-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+}
+
+.point-card {
+    flex: 1;
+    max-width: 600px;
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.point-card:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.point-card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.point-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow: 
+        0 10px 40px rgba(0, 242, 255, 0.1),
+        inset 0 0 30px rgba(0, 242, 255, 0.05);
+}
+
+.point-card h3 {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 24px;
+    color: #00f2ff;
+    margin-bottom: 15px;
+}
+
+.point-description {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.point-divider {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 242, 255, 0.3),
+        transparent
+    );
+    margin: 20px 0;
+}
+
+.point-instruction {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.highlight {
+    color: #00f2ff;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .points-cards {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .points-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .point-card {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tasks-section {
+        padding: 80px 0;
+    }
+
+    .tasks-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    .point-card {
+        padding: 20px;
+    }
+
+    .point-card h3 {
+        font-size: 20px;
+    }
+}
+
+/* TaskBoard Section */
+.taskboard-section {
+    padding: 120px 0;
+}
+
+.taskboard-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.taskboard-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.project-header {
+    background: rgba(0, 242, 255, 0.1);
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+}
+
+.project-header h3 {
+    font-family: 'Rexlia', sans-serif;
+    color: #00f2ff;
+    font-size: 22px;
+    margin: 0;
+}
+
+.tasks-accordion {
+    padding: 15px;
+}
+
+.task-item {
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.task-header {
+    padding: 15px 20px;
+    background: rgba(0, 242, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.task-header:hover {
+    background: rgba(0, 242, 255, 0.1);
+}
+
+.task-header h4 {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-toggle {
+    color: #00f2ff;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.task-item.active .task-toggle {
+    transform: rotate(45deg);
+}
+
+.task-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+}
+
+.task-item.active .task-content {
+    padding: 15px 20px;
+    max-height: 1000px;
+}
+
+.task-section {
+    margin-bottom: 15px;
+}
+
+.task-section:last-child {
+    margin-bottom: 0;
+}
+
+.task-section h5 {
+    color: #00f2ff;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: 'Rexlia', sans-serif;
+}
+
+.task-section p, .task-section li {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.task-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-section li {
+    color: #fff;
+    opacity: 0.8;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.task-section li::before {
+    content: '•';
+    color: #00f2ff;
+    position: absolute;
+    left: 0;
+}
+
+.task-section a {
+    color: #00f2ff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.task-section a:hover {
+    opacity: 0.8;
+}
+
+.points-badge {
+    color: #00f2ff;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    border-radius: 20px;
+    padding: 60px 40px;
+}
+
+.cta-title {
+    font-family: 'Rexlia', sans-serif;
+    font-size: 48px;
+    color: #00f2ff;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.cta-description {
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.8;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.cta-button {
+    display: inline-block;
+    background: rgba(0, 242, 255, 0.1);
+    color: #00f2ff;
+    font-family: 'Rexlia', sans-serif;
+    font-size: 20px;
+    padding: 15px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.cta-button:hover {
+    background: rgba(0, 242, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 30px rgba(0, 242, 255, 0.1),
+        inset 0 0 20px rgba(0, 242, 255, 0.1);
+}
+
+/* Обновляем эффект свечения вокруг кнопки */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.2), transparent 70%);
+    border-radius: 14px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Добавляем эффект свечения вокруг блока */
+.cta-content::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+        rgba(0, 242, 255, 0.1),
+        transparent 20%,
+        transparent 80%,
+        rgba(0, 242, 255, 0.1)
+    );
+    border-radius: 20px;
+    z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 80px 0;
+    }
+
+    .cta-title {
+        font-size: 36px;
+    }
+
+    .cta-description {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .cta-button {
+        font-size: 18px;
+        padding: 12px 30px;
+    }
+}
+
+/* Content Page Navigation */
+.content-header {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Скрываем стандартный навбар ТОЛЬКО на странице content-creation */
+.content-page .main-header:not(.content-header) {
+    display: none;
+}
+
+/* Показываем стандартный навбар на других страницах */
+.main-header:not(.content-header) {
+    display: block;
+}
+
+.content-nav ul {
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.content-nav .nav-link {
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.content-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #00f2ff;
+    transition: width 0.3s ease;
+}
+
+.content-nav .nav-link:hover {
+    color: #00f2ff;
+}
+
+.content-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.content-nav .nav-link.active {
+    color: #00f2ff;
+}
+
+.content-nav .nav-link.active::after {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .content-nav ul {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .content-nav ul {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo-link {
+        margin-bottom: 15px;
+    }
+}
+
+/* Обновляем стили для сетки наград в Business Development */
+.business .rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Последние две карточки занимают по 50% в последнем ряду */
+.business .rewards-grid .reward-card:nth-last-child(-n+2) {
+    grid-column: span 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .business .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .business .rewards-grid .reward-card:nth-last-child(-n+2) {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .business .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Стили для типов проектов в Business Dev Tasks */
+.project-types {
+    display: grid;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.project-type h6 {
+    color: #00f2ff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.project-type ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-type li {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.project-type li::before {
+    content: '•';
+    color: #00f2ff;
+    position: absolute;
+    left: 0;
+} 
