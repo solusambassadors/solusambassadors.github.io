@@ -7,45 +7,38 @@ class Router {
         };
         
         this.contentEl = document.getElementById('content');
-        
-        // Обработка навигации по хэшу
+
         window.addEventListener('hashchange', () => {
             console.log('Hash changed to:', window.location.hash);
-            // Сначала прокручиваем вверх
             window.scrollTo(0, 0);
             this.handleRoute();
         });
         
-        // Обработка кликов по навигации
         document.addEventListener('click', (e) => {
             const link = e.target.closest('a[href^="#"]');
             if (link) {
                 const href = link.getAttribute('href');
                 console.log('Clicked link with href:', href);
-                // Если это ссылка на другую страницу
                 if (this.routes[href]) {
                     e.preventDefault();
-                    // Сначала прокручиваем вверх
                     window.scrollTo(0, 0);
                     window.location.hash = href;
                 }
             }
         });
         
-        // Начальная загрузка
         if (!window.location.hash) {
             window.location.hash = '#/';
         } else {
             this.handleRoute();
         }
 
-        // Добавляем обработчик для карточки Content Creators
         document.addEventListener('click', (e) => {
             const contentCard = e.target.closest('.content-creators');
             if (contentCard) {
                 console.log('Content Creators card clicked');
                 e.preventDefault();
-                e.stopPropagation(); // Останавливаем всплытие события
+                e.stopPropagation();
                 window.location.hash = '#/content-creation';
                 window.scrollTo(0, 0);
             }
@@ -56,7 +49,6 @@ class Router {
         const hash = window.location.hash;
         console.log('Handling route for hash:', hash);
         
-        // Получаем только основную часть хэша (до первого #)
         const mainHash = hash.split('#').slice(0, 2).join('#');
         console.log('Main hash:', mainHash);
         
@@ -65,7 +57,6 @@ class Router {
         
         await this.loadPage(page);
         
-        // Гарантируем прокрутку вверх после загрузки страницы
         window.scrollTo(0, 0);
         
         if(page === 'home') {
@@ -77,7 +68,6 @@ class Router {
 
     async loadPage(page) {
         try {
-            // Управляем видимостью основного навбара
             const mainHeader = document.querySelector('.main-header:not(.content-header)');
             if (mainHeader) {
                 if (page === 'content-creation' || page === 'business-development') {
@@ -91,19 +81,15 @@ class Router {
             const content = await response.text();
             document.getElementById('content').innerHTML = content;
             
-            // Инициализируем скролл для новой страницы
             new SmoothScroll();
             
-            // Инициализируем TaskBoard если мы на странице content-creation или business-development
             if (page === 'content-creation' || page === 'business-development') {
                 new TaskBoard();
                 this.initContentNavigation();
             }
             
-            // Обновляем активную ссылку в навигации
             this.updateActiveLink(page);
             
-            // Еще раз гарантируем прокрутку вверх после всех инициализаций
             window.scrollTo(0, 0);
         } catch (error) {
             console.error('Error loading page:', error);
@@ -111,7 +97,6 @@ class Router {
     }
 
     updateActiveLink(page) {
-        // Обновляем активные ссылки в обоих навбарах
         document.querySelectorAll('nav a, .content-nav a').forEach(link => {
             link.classList.remove('active');
             const dataPage = link.getAttribute('data-page');
@@ -134,7 +119,7 @@ class Router {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navLinks.forEach(link => {
-                        if (link.getAttribute('href').startsWith('#/')) return; // Пропускаем ссылку Home
+                        if (link.getAttribute('href').startsWith('#/')) return;
                         link.classList.remove('active');
                         if (link.getAttribute('href') === `#${id}`) {
                             link.classList.add('active');
@@ -145,18 +130,15 @@ class Router {
         }, observerOptions);
 
         sections.forEach(section => observer.observe(section));
-
-        // Плавный скролл при клике
+        
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
             if (href === '#/') {
-                // Для ссылки Home используем стандартную навигацию
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location.hash = '#/';
                 });
             } else {
-                // Для остальных ссылок используем плавный скролл
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const id = href.substring(1);

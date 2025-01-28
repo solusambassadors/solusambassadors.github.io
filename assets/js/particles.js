@@ -22,11 +22,11 @@ class ParticleSystem {
             this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                size: Math.random() * 1.5 + 0.5, // Размер частиц от 0.5 до 2
-                speedX: (Math.random() * 0.4 - 0.2), // Замедленная скорость по X (-0.2 до 0.2)
-                speedY: (Math.random() * 0.4 - 0.2), // Замедленная скорость по Y (-0.2 до 0.2)
+                size: Math.random() * 1.5 + 0.5,
+                speedX: (Math.random() * 0.4 - 0.2),
+                speedY: (Math.random() * 0.4 - 0.2),
                 color: '#00f2ff',
-                opacity: Math.random() * 0.5 + 0.3 // Случайная прозрачность от 0.3 до 0.8
+                opacity: Math.random() * 0.5 + 0.3
             });
         }
     }
@@ -35,11 +35,9 @@ class ParticleSystem {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.particles.forEach(particle => {
-            // Обновление позиции
             particle.x += particle.speedX;
             particle.y += particle.speedY;
             
-            // Отскок от краёв с плавным переходом
             if(particle.x < 0) {
                 particle.x = this.canvas.width;
             } else if(particle.x > this.canvas.width) {
@@ -52,7 +50,6 @@ class ParticleSystem {
                 particle.y = 0;
             }
             
-            // Отрисовка частицы
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             this.ctx.fillStyle = `rgba(0, 242, 255, ${particle.opacity})`;

@@ -16,7 +16,6 @@ class SmoothScroll {
     }
 
     init() {
-        // Интеграция с requestAnimationFrame
         const raf = (time) => {
             this.lenis.raf(time);
             requestAnimationFrame(raf);
@@ -24,12 +23,10 @@ class SmoothScroll {
         
         requestAnimationFrame(raf);
 
-        // Обработка клика по ссылкам с якорями
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 const href = anchor.getAttribute('href');
                 
-                // Пропускаем ссылки на другие страницы (начинающиеся с '#/')
                 if (href.startsWith('#/')) {
                     return;
                 }

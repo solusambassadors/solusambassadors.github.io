@@ -7,12 +7,11 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #0B0B0B;
-    overflow-y: scroll; /* Всегда показываем скроллбар чтобы избежать дёрганий */
-    scrollbar-width: thin; /* Для Firefox */
-    scrollbar-color: rgba(0, 242, 255, 0.2) rgba(0, 0, 0, 0.1); /* Для Firefox */
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 242, 255, 0.2) rgba(0, 0, 0, 0.1);
 }
 
-/* Стилизуем скроллбар для Chrome/Safari/Edge */
 body::-webkit-scrollbar {
     width: 8px;
 }
@@ -30,13 +29,12 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 242, 255, 0.4);
 }
 
-/* Общий контейнер для выравнивания */
 .container {
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
     padding: 0 120px;
-    box-sizing: border-box; /* Гарантируем, что padding включен в ширину */
+    box-sizing: border-box;
     position: relative;
 }
 
@@ -54,7 +52,7 @@ body::-webkit-scrollbar-thumb:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0; /* Убираем горизонтальные padding */
+    padding: 15px 0;
 }
 
 .logo-link {
@@ -89,7 +87,7 @@ nav ul {
     margin: 0;
     padding: 0;
     margin-right: -15px;
-    transform: translateX(-55px); /* Увеличиваем смещение влево для навигации еще на 10px */
+    transform: translateX(-55px);
 }
 
 nav a {
@@ -149,11 +147,11 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px; /* Добавляем отступ между текстом и логотипом */
+    gap: 40px;
 }
 
 .text-content {
-    flex: 0 1 auto; /* Изменяем flex-grow на 0 */
+    flex: 0 1 auto;
     max-width: 800px;
 }
 
@@ -225,10 +223,9 @@ main {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transform: translateX(20px); /* Немного увеличиваем смещение канваса */
+    transform: translateX(20px);
 }
 
-/* Добавим новую анимацию для плавного появления */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -370,7 +367,6 @@ main {
     }
 }
 
-/* Добавим поддержку очень маленьких экранов */
 @media (max-width: 360px) {
     .container {
         padding: 0 15px;
@@ -698,8 +694,8 @@ main {
 .paths-text {
     flex: 1;
     max-width: 600px;
-    margin-left: 0; /* Убираем отступ слева */
-    padding-left: 0; /* Убираем внутренний отступ */
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .paths-title {
@@ -751,9 +747,9 @@ main {
 
 .path-card {
     flex: 1;
-    background: rgba(11, 11, 11, 0.4); /* Делаем фон более прозрачным */
-    backdrop-filter: blur(10px); /* Добавляем эффект стекла */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Делаем границу белой */
+    background: rgba(11, 11, 11, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     overflow: hidden;
     text-decoration: none;
@@ -771,7 +767,7 @@ main {
     border-color: rgba(0, 242, 255, 0.3);
     box-shadow: 
         0 10px 30px rgba(0, 242, 255, 0.1),
-        inset 0 0 20px rgba(0, 242, 255, 0.05); /* Добавляем внутреннее свечение */
+        inset 0 0 20px rgba(0, 242, 255, 0.05);
 }
 
 .card-image {
@@ -808,7 +804,6 @@ main {
     color: #00f2ff;
 }
 
-/* Добавляем дополнительный эффект свечения вокруг карточки */
 .path-card::before {
     content: '';
     position: absolute;
@@ -871,8 +866,7 @@ main {
 }
 
 .main-footer {
-    margin-top: auto; /* Это прижмет футер к низу, если контента мало */
-    /* ... остальные стили футера ... */
+    margin-top: auto;
 }
 
 /* Content Creation Page */
@@ -961,7 +955,6 @@ main {
     transform: translateZ(20px);
 }
 
-/* Анимация плавающего эффекта */
 @keyframes float {
     0% {
         transform: 
@@ -995,7 +988,6 @@ main {
     }
 }
 
-/* Добавляем плавное свечение */
 @keyframes glow {
     0% {
         filter: brightness(0.8) drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
@@ -1025,7 +1017,6 @@ main {
     }
 }
 
-/* Responsive */
 @media (max-width: 1200px) {
     .content-hero {
         padding: 100px 0;
@@ -1223,7 +1214,6 @@ main {
     position: relative;
 }
 
-/* Эффект свечения при наведении */
 .role-card::before {
     content: '';
     position: absolute;
@@ -1245,7 +1235,6 @@ main {
     opacity: 1;
 }
 
-/* Анимация для изображения */
 .role-image img {
     width: 85%;
     height: 85%;
@@ -1299,7 +1288,6 @@ main {
     }
 }
 
-/* Добавляем эффект при наведении на текстовые элементы */
 .role-name, .role-level {
     transition: all 0.3s ease;
 }
@@ -1415,40 +1403,36 @@ main {
     justify-content: center;
 }
 
-/* Добавляем задержку для второй карточки */
 .role-card:nth-child(2) {
-    animation-delay: 0.6s; /* Увеличиваем задержку для второй карточки */
+    animation-delay: 0.6s;
 }
 
 .role-card:nth-child(2) .role-image img {
-    animation-delay: 0.2s; /* Небольшая задержка для анимации изображения */
+    animation-delay: 0.2s;
 }
 
-/* Добавляем задержку для третьей карточки */
 .role-card:nth-child(3) {
-    animation-delay: 0.8s; /* Увеличиваем задержку для третьей карточки */
+    animation-delay: 0.8s;
 }
 
 .role-card:nth-child(3) .role-image img {
-    animation-delay: 0.4s; /* Небольшая задержка для анимации изображения */
+    animation-delay: 0.4s;
 }
 
-/* Добавляем задержку для четвертой карточки */
 .role-card:nth-child(4) {
-    animation-delay: 1s; /* Увеличиваем задержку для четвертой карточки */
+    animation-delay: 1s;
 }
 
 .role-card:nth-child(4) .role-image img {
-    animation-delay: 0.6s; /* Небольшая задержка для анимации изображения */
+    animation-delay: 0.6s;
 }
 
-/* Добавляем задержку для пятой карточки */
 .role-card:nth-child(5) {
-    animation-delay: 1.2s; /* Увеличиваем задержку для пятой карточки */
+    animation-delay: 1.2s;
 }
 
 .role-card:nth-child(5) .role-image img {
-    animation-delay: 0.8s; /* Небольшая задержка для анимации изображения */
+    animation-delay: 0.8s;
 }
 
 /* Responsive */
@@ -1868,7 +1852,6 @@ main {
         inset 0 0 20px rgba(0, 242, 255, 0.1);
 }
 
-/* Обновляем эффект свечения вокруг кнопки */
 .cta-button::before {
     content: '';
     position: absolute;
@@ -1883,7 +1866,6 @@ main {
     transition: opacity 0.3s ease;
 }
 
-/* Добавляем эффект свечения вокруг блока */
 .cta-content::before {
     content: '';
     position: absolute;
@@ -1931,12 +1913,10 @@ main {
     z-index: 1000;
 }
 
-/* Скрываем стандартный навбар ТОЛЬКО на странице content-creation */
 .content-page .main-header:not(.content-header) {
     display: none;
 }
 
-/* Показываем стандартный навбар на других страницах */
 .main-header:not(.content-header) {
     display: block;
 }
@@ -2012,7 +1992,6 @@ main {
     }
 }
 
-/* Обновляем стили для сетки наград в Business Development */
 .business .rewards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2022,7 +2001,6 @@ main {
     padding: 0 20px;
 }
 
-/* Последние две карточки занимают по 50% в последнем ряду */
 .business .rewards-grid .reward-card:nth-last-child(-n+2) {
     grid-column: span 1.5;
 }
@@ -2044,7 +2022,6 @@ main {
     }
 }
 
-/* Стили для типов проектов в Business Dev Tasks */
 .project-types {
     display: grid;
     gap: 20px;

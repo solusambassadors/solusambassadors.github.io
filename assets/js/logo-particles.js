@@ -2,7 +2,7 @@ class LogoParticles {
     constructor() {
         this.canvas = document.createElement('canvas');
         this.container = document.getElementById('logo-particles');
-        if (!this.container) return; // Проверка наличия контейнера
+        if (!this.container) return;
         
         this.container.appendChild(this.canvas);
         this.ctx = this.canvas.getContext('2d');
@@ -27,7 +27,6 @@ class LogoParticles {
         this.canvas.width = rect.width;
         this.canvas.height = rect.height;
         
-        // Переинициализируем частицы при изменении размера
         if (this.particles.length > 0) {
             this.initParticles();
         }
@@ -43,7 +42,6 @@ class LogoParticles {
         const tempCanvas = document.createElement('canvas');
         const tempCtx = tempCanvas.getContext('2d');
         
-        // Масштабируем изображение
         const scale = Math.min(
             this.canvas.width / this.image.width,
             this.canvas.height / this.image.height
@@ -55,13 +53,11 @@ class LogoParticles {
         tempCtx.drawImage(this.image, 0, 0, tempCanvas.width, tempCanvas.height);
         const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
         
-        // Центрируем изображение
         const offsetX = (this.canvas.width - tempCanvas.width) / 2;
         const offsetY = (this.canvas.height - tempCanvas.height) / 2;
         
         this.particles = [];
         
-        // Увеличиваем шаг для уменьшения количества частиц
         for(let y = 0; y < imageData.height; y += 6) {
             for(let x = 0; x < imageData.width; x += 6) {
                 const alpha = imageData.data[((y * imageData.width + x) * 4) + 3];
@@ -71,7 +67,7 @@ class LogoParticles {
                         targetY: y + offsetY,
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        size: 2, // Увеличиваем размер частиц
+                        size: 2,
                         color: '#00f2ff',
                         angle: Math.random() * Math.PI * 2,
                         oscillationRadius: 2 + Math.random() * 3,
@@ -92,38 +88,31 @@ class LogoParticles {
             const dx = particle.targetX - particle.x;
             const dy = particle.targetY - particle.y;
             
-            // Вычисляем расстояние от курсора до частицы
             const mouseDistance = Math.hypot(
                 this.mouse.x - particle.x,
                 this.mouse.y - particle.y
             );
             
-            // Уменьшаем радиус действия курсора с 100 до 40
             const mouseRadius = 40;
             
             if (mouseDistance < mouseRadius) {
-                // Уменьшаем силу отталкивания с 15 до 8
                 const force = (1 - mouseDistance / mouseRadius) * 8;
                 const angle = Math.atan2(
                     particle.y - this.mouse.y,
                     particle.x - this.mouse.x
                 );
                 
-                // Применяем силу отталкивания
                 particle.x += Math.cos(angle) * force;
                 particle.y += Math.sin(angle) * force;
             } else {
-                // Если курсор далеко, возвращаемся к целевой позиции
                 particle.x += dx * 0.05;
                 particle.y += dy * 0.05;
             }
             
-            // Осцилляция
             particle.time += particle.oscillationSpeed;
             const oscillationX = Math.cos(particle.time) * particle.oscillationRadius;
             const oscillationY = Math.sin(particle.time) * particle.oscillationRadius;
             
-            // Отрисовка
             this.ctx.beginPath();
             this.ctx.arc(
                 particle.x + oscillationX,

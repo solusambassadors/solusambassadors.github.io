@@ -48,25 +48,19 @@ class ParticleLoader {
         const centerY = this.canvas.height / 2;
         
         this.particles.forEach((particle, i) => {
-            // Вычисляем текущий угол с учетом времени и позиции частицы
             const currentAngle = particle.angle + time * particle.speed;
             
-            // Вычисляем яркость частицы (создает эффект "бегущего света")
             particle.brightness = Math.sin(time * 3 - i * 0.2) * 0.5 + 0.5;
             
-            // Вычисляем позицию частицы
             const x = centerX + Math.cos(currentAngle) * particle.radius;
             const y = centerY + Math.sin(currentAngle) * particle.radius;
             
-            // Рисуем частицу
             this.ctx.beginPath();
             this.ctx.arc(x, y, particle.size, 0, Math.PI * 2);
             
-            // Настраиваем свечение
             this.ctx.shadowBlur = 15;
             this.ctx.shadowColor = '#00f2ff';
             
-            // Устанавливаем цвет с учетом яркости
             const alpha = 0.3 + particle.brightness * 0.7;
             this.ctx.fillStyle = `rgba(0, 242, 255, ${alpha})`;
             
