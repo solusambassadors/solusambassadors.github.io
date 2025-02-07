@@ -2432,4 +2432,64 @@ main {
         width: 180px;
         height: 180px;
     }
+}
+
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    color: #fff;
+    margin-bottom: 60px;
+    font-family: 'Rexlia', sans-serif;
+}
+
+.member-achievements {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(0, 242, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 242, 255, 0.1);
+}
+
+.achievement-number {
+    font-size: 36px;
+    color: #00f2ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.achievement-label {
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.achievement-note {
+    font-size: 14px;
+    color: #fff;
+    opacity: 0.7;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 242, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .achievement-number {
+        font-size: 32px;
+    }
+
+    .achievement-label {
+        font-size: 14px;
+    }
+
+    .achievement-note {
+        font-size: 12px;
+    }
 } 
